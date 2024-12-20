@@ -1,7 +1,8 @@
-// Home.js
-import supabase from "./config/firebaseClient.js";
+import { getAuth } from "firebase/auth";
+import { getDatabase, ref, get } from "firebase/database";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { app } from "./config/firebaseClient.js";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -9,38 +10,41 @@ const Home = () => {
   const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
 
+  const auth = getAuth(app);
+  const database = getDatabase(app);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Fetch the user from the `user_` table with the provided email
-    const { data, error } = await supabase
-      .from("students")
-      .select("*")
-      .eq("email", email)
-      .single();
+    try {
+      const adminRef = ref(database, "Admin");
+      const adminSnapshot = await get(adminRef);
 
-    if (error) {
-      setLoginError("Failed to fetch user data.");
-      return;
-    }
+      if (adminSnapshot.exists()) {
+        const adminData = adminSnapshot.val();
 
-    // Check if the password matches
-    if (data && data.password === password) {
-      // Save first_name to localStorage
-      localStorage.setItem("first_name", data.first_name);
-      localStorage.setItem("last_name", data.last_name);
-      localStorage.setItem("id", data.id);
-      setLoginError(null);
-      navigate("/dashboard");
-    } else {
-      setLoginError("Invalid email or password.");
+        const storedEmail = adminData.email;
+        const storedPassword = adminData.password;
+
+        if (email === storedEmail && password === storedPassword) {
+          localStorage.setItem("user_email", storedEmail);
+          setLoginError(null);
+          navigate("/dashboard");
+        } else {
+          setLoginError("Invalid email or password.");
+        }
+      } else {
+        setLoginError("Admin credentials not found.");
+      }
+    } catch (error) {
+      setLoginError("An error occurred during login. Please try again.");
     }
   };
 
   return (
     <div className="page home">
       <div className="login-box">
-        <h2>Login</h2>
+        <h2>Admin Login</h2>
         <form onSubmit={handleLogin}>
           <input
             type="email"
