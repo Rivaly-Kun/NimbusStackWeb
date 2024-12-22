@@ -4,14 +4,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { app } from "./config/firebaseClient.js";
 
+
 const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false); 
   const navigate = useNavigate();
 
   const auth = getAuth(app);
   const database = getDatabase(app);
+
+  useState(() => {
+    setIsLoaded(true);
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -43,7 +49,7 @@ const Home = () => {
 
   return (
     <div className="page home">
-      <div className="login-box">
+      <div className={`login-box ${isLoaded ? "fade-in" : ""}`}>
         <h2>Admin Login</h2>
         <form onSubmit={handleLogin}>
           <input

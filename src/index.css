@@ -15,6 +15,62 @@ body {
   background: var(--sidebar-bg);
   color: var(--text-dark);
 }
+/* Fade-in animation for login box */
+.login-box {
+  position: absolute; /* Center the login box */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%) translateY(20px); /* Initial transform with vertical offset */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  width: 300px;
+  opacity: 0; /* Start invisible */
+  transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+}
+
+.login-box.fade-in {
+  opacity: 1; /* Fully visible */
+  transform: translate(-50%, -50%) translateY(0); /* Reset vertical offset */
+}
+
+
+/* Style form elements */
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-box button:hover {
+  background-color: #0056b3;
+}
+
+
 
 /* Layout */
 .dashboard {
@@ -24,27 +80,38 @@ body {
 
 /* Sidebar */
 .sidebar {
-  background: var(--primary);
-  color: var(--text-light);
-  width: 250px;
-  padding: 20px;
+  background: var(--sidebar-bg);
+  color: var(--text-dark);
+  width: 280px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar .logo {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .sidebar .logo img {
-  width: 80px;
+  width: 100px;
   border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.sidebar .logo h1 {
+  font-size: 18px;
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar ul li {
@@ -52,10 +119,28 @@ body {
 }
 
 .sidebar ul li a {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  color: var(--text-light);
+  color: var(--text-dark);
+  padding: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 16px;
   font-weight: 500;
 }
+
+.sidebar ul li a i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.sidebar ul li a:hover {
+  background: var(--primary);
+  color: var(--text-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Main Content */
 .main-content {
