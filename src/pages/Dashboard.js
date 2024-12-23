@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/sidebar.js";
 import Home from "../sub_pages/home.js";
 import Weather from "../sub_pages/weather.js";
@@ -8,12 +8,13 @@ import Community from "../sub_pages/community.js";
 
 const Dashboard = () => {
   const [activeContent, setActiveContent] = useState("home");
-  const navigate = useNavigate(); // Initialize navigate
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const navigate = useNavigate();
 
   // Handle navigation for "logout"
   useEffect(() => {
     if (activeContent === "logout") {
-      navigate("/"); // Redirect to Home page
+      navigate("/");
     }
   }, [activeContent, navigate]);
 
@@ -35,13 +36,20 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       {/* Sidebar */}
-      <Sidebar onMenuClick={setActiveContent} />
+      <Sidebar
+        onMenuClick={setActiveContent}
+        isCollapsed={isSidebarCollapsed}
+        toggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+      />
 
       {/* Main Content */}
-      <div className="main-content">
+      <div className={`main-content ${isSidebarCollapsed ? "collapsed" : ""}`}>
         <header className="dashboard-header">
           <h1>Dashboard</h1>
-          <p>Dashboard &gt; {activeContent.charAt(0).toUpperCase() + activeContent.slice(1)}</p>
+          <p>
+            Dashboard &gt;{" "}
+            {activeContent.charAt(0).toUpperCase() + activeContent.slice(1)}
+          </p>
         </header>
 
         {/* Render Active Content */}
