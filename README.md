@@ -5,6 +5,13 @@ Install dependencies:
 npm install
 npm install dotenv
 npm install firebase
+npm install axios
+
+//Pagasa parsers api
+npm i pagasa-parser
+npm i @pagasa-parser/formatter-wikipedia
+
+
 
 Push to GitHub/
 git init
