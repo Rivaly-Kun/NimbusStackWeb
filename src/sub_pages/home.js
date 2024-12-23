@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { parse } from "pagasa-parser"; // Correctly import the parse function
-import { wikipediaFormatter } from "@pagasa-parser/formatter-wikipedia"; // Import the formatter
+import { parse } from "pagasa-parser"; 
+import { wikipediaFormatter } from "@pagasa-parser/formatter-wikipedia"; 
 
 const Home = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -9,16 +9,16 @@ const Home = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        // Use the parse function with the Wikipedia formatter
+      
         const weather = await parse({ formatter: wikipediaFormatter });
-        setWeatherData(weather); // Set the parsed weather data
+        setWeatherData(weather); 
       } catch (err) {
         setError("Failed to fetch or parse weather data.");
         console.error("Error:", err);
       }
     };
 
-    fetchWeather(); // Fetch data on component mount
+    fetchWeather();
   }, []);
 
   return (
