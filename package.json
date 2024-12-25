@@ -7,6 +7,7 @@
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
     "@pagasa-parser/formatter-wikipedia": "^1.1.0",
+    "@react-google-maps/api": "^2.20.4",
     "@supabase/supabase-js": "^2.46.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",

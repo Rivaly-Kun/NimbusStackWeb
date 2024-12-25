@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/sidebar.js";
 import Home from "../sub_pages/home.js";
 import Weather from "../sub_pages/weather.js";
-import Users from "../sub_pages/users.js";
+import Users from "../sub_pages/reports.js";
 import Community from "../sub_pages/community.js";
 
 const Dashboard = () => {

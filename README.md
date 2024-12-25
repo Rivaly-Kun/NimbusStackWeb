@@ -11,6 +11,8 @@ npm install axios
 npm i pagasa-parser
 npm i @pagasa-parser/formatter-wikipedia
 
+//Google maps api
+npm install @react-google-maps/api dotenv
 
 
 Push to GitHub/
