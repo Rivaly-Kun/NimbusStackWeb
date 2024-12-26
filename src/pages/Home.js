@@ -28,9 +28,10 @@ const Home = () => {
 
       if (adminSnapshot.exists()) {
         const adminData = adminSnapshot.val();
+console.log(adminData);
+        const storedEmail = adminData.Email;
+        const storedPassword = adminData.Password;
 
-        const storedEmail = adminData.email;
-        const storedPassword = adminData.password;
 
         if (email === storedEmail && password === storedPassword) {
           localStorage.setItem("user_email", storedEmail);
