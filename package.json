@@ -16,10 +16,13 @@
     "dotenv": "^16.4.7",
     "firebase": "^11.1.0",
     "html5-qrcode": "^2.3.8",
+    "leaflet": "^1.9.4",
+    "leaflet-control-custom": "^1.0.0",
     "pagasa-parser": "^2.2.4",
     "qrcode.react": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
